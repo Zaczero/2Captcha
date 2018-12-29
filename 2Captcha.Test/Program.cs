@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.IO;
 
-namespace TwoCaptcha.Test
+namespace _2Captcha.Test
 {
     class Program
     {
