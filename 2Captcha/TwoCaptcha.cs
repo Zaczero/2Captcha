@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace _2Captcha
@@ -11,7 +10,7 @@ namespace _2Captcha
     public class TwoCaptcha
     {
         [Serializable]
-        private struct TwoCaptchaResposne
+        private struct TwoCaptchaResponse
         {
             public int Status;
             public string Request;
@@ -38,7 +37,7 @@ namespace _2Captcha
             var inResponse = await _httpClient.PostAsync(baseUrl + "in.php", httpContent);
             var inJson = await inResponse.Content.ReadAsStringAsync();
 
-            var @in = JsonConvert.DeserializeObject<TwoCaptchaResposne>(inJson);
+            var @in = JsonConvert.DeserializeObject<TwoCaptchaResponse>(inJson);
             if (@in.Status == 0)
             {
                 return new TwoCaptchaResult(false, @in.Request);
@@ -62,7 +61,7 @@ namespace _2Captcha
             var inResponse = await _httpClient.PostAsync(baseUrl + "in.php", new FormUrlEncodedContent(postData));
             var inJson = await inResponse.Content.ReadAsStringAsync();
 
-            var @in = JsonConvert.DeserializeObject<TwoCaptchaResposne>(inJson);
+            var @in = JsonConvert.DeserializeObject<TwoCaptchaResponse>(inJson);
             if (@in.Status == 0)
             {
                 return new TwoCaptchaResult(false, @in.Request);
@@ -80,10 +79,10 @@ namespace _2Captcha
             {
                 var resJson = await _httpClient.GetStringAsync(baseUrl + $"res.php?key={apiKeySafe}&id={solveId}&action=get&json=1");
 
-                var res = JsonConvert.DeserializeObject<TwoCaptchaResposne>(resJson);
+                var res = JsonConvert.DeserializeObject<TwoCaptchaResponse>(resJson);
                 if (res.Status == 0)
                 {
-                    if (res.Request == "CAPCHA_NOT_READY")
+                    if (res.Request == "CAPTCHA_NOT_READY")
                     {
                         await Task.Delay(5 * 1000);
                         continue;
