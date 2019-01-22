@@ -3,6 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>2Captcha</RootNamespace>
+    <Authors>Zaczero (Kamil Monicz)</Authors>
+    <Description>Simple API wrapper for https://2captcha.com/</Description>
+    <Copyright>Copyright (c) Zaczero (Kamil Monicz) 2019</Copyright>
+    <PackageLicenseUrl>https://github.com/Zaczero/2Captcha/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Zaczero/2Captcha</PackageProjectUrl>
+    <PackageIconUrl>https://i.imgur.com/2HiKUjL.png</PackageIconUrl>
+    <Version>1.1.0</Version>
+    <PackageTags>2captcha, captcha, solver, recaptcha, google, text, image, wrapper, api</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
