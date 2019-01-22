@@ -1,5 +1,9 @@
-
 # ![2Captcha logo](https://i.imgur.com/sCDANG3.png)
+
+![](https://img.shields.io/github/release/Zaczero/2Captcha.svg)
+![](https://img.shields.io/nuget/v/2CaptchaAPI.svg)
+![](https://img.shields.io/github/license/Zaczero/2Captcha.svg)
+
 Simple API wrapper for https://2captcha.com/
 
 ## Download
