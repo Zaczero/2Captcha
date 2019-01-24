@@ -9,7 +9,7 @@
     <PackageLicenseUrl>https://github.com/Zaczero/2Captcha/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Zaczero/2Captcha</PackageProjectUrl>
     <PackageIconUrl>https://i.imgur.com/2HiKUjL.png</PackageIconUrl>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <PackageTags>2captcha, captcha, solver, recaptcha, google, text, image, wrapper, api</PackageTags>
     <PackageId>2CaptchaAPI</PackageId>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
