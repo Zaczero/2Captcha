@@ -12,6 +12,7 @@
     <Version>1.1.0</Version>
     <PackageTags>2captcha, captcha, solver, recaptcha, google, text, image, wrapper, api</PackageTags>
     <PackageId>2CaptchaAPI</PackageId>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
