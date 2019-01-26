@@ -82,7 +82,7 @@ namespace _2Captcha
                 var res = JsonConvert.DeserializeObject<TwoCaptchaResponse>(resJson);
                 if (res.Status == 0)
                 {
-                    if (res.Request == "CAPTCHA_NOT_READY")
+                    if (res.Request == "CAPCHA_NOT_READY")
                     {
                         await Task.Delay(5 * 1000);
                         continue;
