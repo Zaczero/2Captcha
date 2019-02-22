@@ -17,6 +17,9 @@ If you find this project useful and you are new to 2captcha please consider regi
 ```cs
 var twoCaptcha = new TwoCaptcha(" ## YOUR API KEY ## ");
 
+// Get current balance
+var balance = await twoCaptcha.GetBalance();
+
 // Solve image captcha
 var image1 = await twoCaptcha.SolveImage(new FileStream("captcha.png", FileMode.Open));
 var image2 = await twoCaptcha.SolveImage("data:image/png;base64,iVBORw0KGgo...");
