@@ -9,6 +9,9 @@ namespace _2Captcha.Test
         {
             var twoCaptcha = new TwoCaptcha(" ## YOUR API KEY ## ");
 
+            // Get current balance
+            var balance = twoCaptcha.GetBalance().Result;
+
             // Solve image captcha
             var image1 = twoCaptcha.SolveImage(new FileStream("captcha.png", FileMode.Open)).Result;
             var image2 = twoCaptcha.SolveImage("data:image/png;base64,iVBORw0KGgo...").Result;

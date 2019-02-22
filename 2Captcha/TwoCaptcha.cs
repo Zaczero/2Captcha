@@ -27,6 +27,26 @@ namespace _2Captcha
             _apiKey = apiKey;
         }
 
+        public async Task<TwoCaptchaResult> GetBalance()
+        {
+            var getData = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("key", _apiKey),
+                new KeyValuePair<string, string>("action", "getbalance"),
+                new KeyValuePair<string, string>("json", "1")
+            };
+
+            var inResponse = await _httpClient.PostAsync(baseUrl + "res.php", new FormUrlEncodedContent(getData));
+            var inJson = await inResponse.Content.ReadAsStringAsync();
+
+            var @in = JsonConvert.DeserializeObject<TwoCaptchaResponse>(inJson);
+            if (@in.Status == 0)
+            {
+                return new TwoCaptchaResult(false, @in.Request);
+            }
+
+            return new TwoCaptchaResult(true, @in.Request);
+        }
         
         private async Task<TwoCaptchaResult> Solve(string method, int delaySeconds, MultipartFormDataContent httpContent)
         {
@@ -122,7 +142,7 @@ namespace _2Captcha
 
         public async Task<TwoCaptchaResult> SolveReCaptchaV2(string googleSiteKey, string pageUrl, bool invisible = false)
         {
-            return await Solve("userrecaptcha", 15,
+            return await Solve("userrecaptcha", 10,
                 new KeyValuePair<string, string>("googlekey", googleSiteKey),
                 new KeyValuePair<string, string>("pageurl", pageUrl),
                 new KeyValuePair<string, string>("invisible", invisible ? "1" : "0"));
