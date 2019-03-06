@@ -9,7 +9,9 @@ namespace _2Captcha
 {
     public class TwoCaptcha
     {
+#if NETSTANDARD2_0
         [Serializable]
+#endif
         private struct TwoCaptchaResponse
         {
             public int Status;
