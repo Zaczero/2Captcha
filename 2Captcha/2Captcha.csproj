@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard1.1;netstandard2.0</TargetFrameworks>
     <RootNamespace>2Captcha</RootNamespace>
     <Authors>Zaczero (Kamil Monicz)</Authors>
     <Description>Simple API wrapper for https://2captcha.com/</Description>
