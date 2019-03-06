@@ -4,10 +4,11 @@
 ![](https://img.shields.io/nuget/v/2CaptchaAPI.svg)
 ![](https://img.shields.io/github/license/Zaczero/2Captcha.svg)
 
-Simple API wrapper for https://2captcha.com/
+Simple HTTP API wrapper for https://2captcha.com/  
+An online captcha solving and image recognition service.
 
 ## Download
-* https://github.com/Zaczero/2Captcha/releases/latest
+* Latest release: https://github.com/Zaczero/2Captcha/releases/latest
 
 ## Thank You!
 If you find this project useful and you are new to 2captcha please consider registering from my [referrral link](http://2captcha.com/?from=6591885) 😊
@@ -46,4 +47,42 @@ var funNoJavaScript = await twoCaptcha.SolveFunCaptcha("FUN_CAPTCHA_PUBLIC_KEY",
 var key = await twoCaptcha.SolveKeyCaptcha("USER_ID", "SESSION_ID", "WEB_SIGN_1", "WEB_SIGN_2", "https://example.com");
 ```
 
-View the [result structure](https://github.com/Zaczero/2Captcha/blob/master/2Captcha/TwoCaptchaResult.cs)
+### And here is the result structure: *(same for all methods)*
+
+```cs
+public struct TwoCaptchaResult
+{
+	public bool Success;
+	public string Response;
+
+	public TwoCaptchaResult(bool success, string response)
+	{
+		Success = success;
+		Response = response;
+	}
+}
+```
+
+## License
+
+MIT License
+
+Copyright (c) 2018 Kamil Monicz
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
