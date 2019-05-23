@@ -7,13 +7,13 @@
 Simple HTTP API wrapper for https://2captcha.com/  
 An online captcha solving and image recognition service.
 
-## Download
+## 🔗 Download
 * Latest release: https://github.com/Zaczero/2Captcha/releases/latest
 
-## Thank You!
-If you find this project useful and you are new to 2captcha please consider registering from my [referrral link](http://2captcha.com/?from=6591885) 😊
+## ☕ Support me
+If you find this project useful and you are new to 2captcha please consider registering from my [referrral link](http://2captcha.com/?from=6591885).
 
-## Sample code
+## 🏁 Sample code
 
 ```cs
 var twoCaptcha = new TwoCaptcha(" ## YOUR API KEY ## ");
@@ -47,7 +47,7 @@ var funNoJavaScript = await twoCaptcha.SolveFunCaptcha("FUN_CAPTCHA_PUBLIC_KEY",
 var key = await twoCaptcha.SolveKeyCaptcha("USER_ID", "SESSION_ID", "WEB_SIGN_1", "WEB_SIGN_2", "https://example.com");
 ```
 
-### And here is the result structure: *(same for all methods)*
+### And here is the result structure *(same for all methods)*:
 
 ```cs
 public struct TwoCaptchaResult
@@ -63,7 +63,7 @@ public struct TwoCaptchaResult
 }
 ```
 
-## License
+## 📎 License
 
 MIT License
 
