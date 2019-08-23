@@ -1,19 +1,17 @@
-# ![2Captcha logo](https://i.imgur.com/sCDANG3.png)
+# ![Zaczero/2Captcha logo](https://i.imgur.com/sCDANG3.png)
 
-![](https://img.shields.io/github/release/Zaczero/2Captcha.svg)
-![](https://img.shields.io/nuget/v/2CaptchaAPI.svg)
-![](https://img.shields.io/github/license/Zaczero/2Captcha.svg)
+![github version](https://img.shields.io/github/release/Zaczero/2Captcha.svg)
+![nuget version](https://img.shields.io/nuget/v/2CaptchaAPI.svg)
+![license type](https://img.shields.io/github/license/Zaczero/2Captcha.svg)
 
-Simple HTTP API wrapper for https://2captcha.com/  
+Simple HTTP API wrapper for [2captcha.com](https://2captcha.com/)  
 An online captcha solving and image recognition service.
 
-## 🔗 Download
-* Latest release: https://github.com/Zaczero/2Captcha/releases/latest
+### 🔗 Download
 
-## ☕ Support me
-If you find this project useful and you are new to 2captcha please consider registering from my [referrral link](http://2captcha.com/?from=6591885).
+* Latest release - [github.com/Zaczero/2Captcha/releases/latest](https://github.com/Zaczero/2Captcha/releases/latest)
 
-## 🏁 Sample code
+### 🏁 Sample code
 
 ```cs
 var twoCaptcha = new TwoCaptcha(" ## YOUR API KEY ## ");
@@ -33,7 +31,7 @@ var recaptcha = await twoCaptcha.SolveReCaptchaV2("GOOGLE_SITE_KEY", "https://ex
 var recaptchaInvisible = await twoCaptcha.SolveReCaptchaV2("GOOGLE_SITE_KEY", "https://example.com", true);
 
 // Solve ReCaptchaV3
-var recaptcha3 = await twoCaptcha.SolveReCaptchaV3("GOOGLE_SITE_KEY", "https://example.com", "verify", 0.4);
+var recaptcha3 = await twoCaptcha.SolveReCaptchaV3("GOOGLE_SITE_KEY", "https://example.com", "ACTION", 0.4);
 
 // Solve ClickCaptcha
 var click1 = await twoCaptcha.SolveClickCaptcha(new FileStream("captcha.png", FileMode.Open), "Click on ghosts");
@@ -50,7 +48,7 @@ var funNoJavaScript = await twoCaptcha.SolveFunCaptcha("FUN_CAPTCHA_PUBLIC_KEY",
 var key = await twoCaptcha.SolveKeyCaptcha("USER_ID", "SESSION_ID", "WEB_SIGN_1", "WEB_SIGN_2", "https://example.com");
 ```
 
-### And here is the result structure *(same for all methods)*:
+#### And here is the result structure *(same for all methods)*:
 
 ```cs
 public struct TwoCaptchaResult
@@ -66,26 +64,12 @@ public struct TwoCaptchaResult
 }
 ```
 
-## 📎 License
+### ☕ Support me
 
-MIT License
+* Bitcoin: `35n1y9iHePKsVTobs4FJEkbfnBg2NtVbJW`
+* Ethereum: `0xc69C7FC9Ce691c95f38798506EfdBB8d14005B67`
 
-Copyright (c) 2018 Kamil Monicz
+### 📃 License
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+* [Zaczero/2Captcha](https://github.com/Zaczero/2Captcha/blob/master/LICENSE)
+* [JamesNK/Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md)

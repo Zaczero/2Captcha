@@ -30,7 +30,7 @@ namespace _2Captcha.Test
             var recaptchaInvisible = await twoCaptcha.SolveReCaptchaV2("GOOGLE_SITE_KEY", "https://example.com", true);
 
             // Solve ReCaptchaV3
-            var recaptcha3 = await twoCaptcha.SolveReCaptchaV3("GOOGLE_SITE_KEY", "https://example.com", "verify", 0.4);
+            var recaptcha3 = await twoCaptcha.SolveReCaptchaV3("GOOGLE_SITE_KEY", "https://example.com", "ACTION", 0.4);
 
 			// Solve ClickCaptcha
 			var click1 = await twoCaptcha.SolveClickCaptcha(new FileStream("captcha.png", FileMode.Open), "Click on ghosts");
