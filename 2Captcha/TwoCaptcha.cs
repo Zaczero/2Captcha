@@ -1,13 +1,14 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace _2Captcha
 {
-    public class TwoCaptcha
+	public class TwoCaptcha
     {
 #if NETSTANDARD2_0
         [Serializable]
@@ -149,14 +150,15 @@ namespace _2Captcha
                 new KeyValuePair<string, string>("pageurl", pageUrl),
                 new KeyValuePair<string, string>("invisible", invisible ? "1" : "0"));
         }
-        public async Task<TwoCaptchaResult> SolveReCaptchaV3(string googleSiteKey, string pageUrl, string action, double minScore=0.3)
+
+        public async Task<TwoCaptchaResult> SolveReCaptchaV3(string googleSiteKey, string pageUrl, string action = "verify", double minScore = 0.4)
         {
             return await Solve("userrecaptcha", 10,
                 new KeyValuePair<string, string>("googlekey", googleSiteKey),
                 new KeyValuePair<string, string>("pageurl", pageUrl),
                 new KeyValuePair<string, string>("action", action),
                 new KeyValuePair<string, string>("version", "v3"),
-                new KeyValuePair<string, string>("min_score", minScore.ToString()));
+                new KeyValuePair<string, string>("min_score", minScore.ToString(CultureInfo.InvariantCulture)));
         }
 
         public async Task<TwoCaptchaResult> SolveClickCaptcha(Stream imageStream, string task)

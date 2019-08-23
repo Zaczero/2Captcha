@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace _2Captcha.Test
 {
-    class Program
+	class Program
     {
         static void Main(string[] args)
         {
@@ -29,8 +29,11 @@ namespace _2Captcha.Test
             var recaptcha = await twoCaptcha.SolveReCaptchaV2("GOOGLE_SITE_KEY", "https://example.com");
             var recaptchaInvisible = await twoCaptcha.SolveReCaptchaV2("GOOGLE_SITE_KEY", "https://example.com", true);
 
-            // Solve ClickCaptcha
-            var click1 = await twoCaptcha.SolveClickCaptcha(new FileStream("captcha.png", FileMode.Open), "Click on ghosts");
+            // Solve ReCaptchaV3
+            var recaptcha3 = await twoCaptcha.SolveReCaptchaV3("GOOGLE_SITE_KEY", "https://example.com", "verify", 0.4);
+
+			// Solve ClickCaptcha
+			var click1 = await twoCaptcha.SolveClickCaptcha(new FileStream("captcha.png", FileMode.Open), "Click on ghosts");
             var click2 = await twoCaptcha.SolveClickCaptcha("data:image/png;base64,iVBORw0KGgo...", "Click on ghosts");
 
             // Solve RotateCaptcha

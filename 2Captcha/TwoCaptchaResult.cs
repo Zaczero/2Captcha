@@ -1,6 +1,6 @@
 ﻿namespace _2Captcha
 {
-    public struct TwoCaptchaResult
+	public struct TwoCaptchaResult
     {
         public bool Success;
         public string Response;
