@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+#pragma warning disable 649
 
 namespace _2Captcha
 {
