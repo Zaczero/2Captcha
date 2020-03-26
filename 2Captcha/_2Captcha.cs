@@ -9,29 +9,29 @@ using System.Threading.Tasks;
 
 namespace _2Captcha
 {
-	public class TwoCaptcha
+    public class _2Captcha
     {
 #if NETSTANDARD2_0
         [Serializable]
 #endif
-        private struct TwoCaptchaResponse
+        private struct _2CaptchaResultInternal
         {
             public int Status;
             public string Request;
         }
 
-        private const string baseUrl = "https://2captcha.com/";
+        private const string ApiUrl = "https://2captcha.com/";
 
         private readonly HttpClient _httpClient;
         private readonly string _apiKey;
 
-        public TwoCaptcha(string apiKey)
+        public _2Captcha(string apiKey, HttpClient httpClient = null)
         {
-            _httpClient = new HttpClient();
+            _httpClient = httpClient ?? new HttpClient();
             _apiKey = apiKey;
         }
 
-        public async Task<TwoCaptchaResult> GetBalance()
+        public async Task<_2CaptchaResult> GetBalance()
         {
             var getData = new List<KeyValuePair<string, string>>
             {
@@ -40,38 +40,38 @@ namespace _2Captcha
                 new KeyValuePair<string, string>("json", "1")
             };
 
-            var inResponse = await _httpClient.PostAsync(baseUrl + "res.php", new FormUrlEncodedContent(getData));
+            var inResponse = await _httpClient.PostAsync(ApiUrl + "res.php", new FormUrlEncodedContent(getData));
             var inJson = await inResponse.Content.ReadAsStringAsync();
 
-            var @in = JsonConvert.DeserializeObject<TwoCaptchaResponse>(inJson);
+            var @in = JsonConvert.DeserializeObject<_2CaptchaResultInternal>(inJson);
             if (@in.Status == 0)
             {
-                return new TwoCaptchaResult(false, @in.Request);
+                return new _2CaptchaResult(false, @in.Request);
             }
 
-            return new TwoCaptchaResult(true, @in.Request);
+            return new _2CaptchaResult(true, @in.Request);
         }
         
-        private async Task<TwoCaptchaResult> Solve(string method, int delaySeconds, MultipartFormDataContent httpContent)
+        private async Task<_2CaptchaResult> Solve(string method, int delaySeconds, MultipartFormDataContent httpContent)
         {
             httpContent.Add(new StringContent(_apiKey), "key");
             httpContent.Add(new StringContent(method), "method");
             httpContent.Add(new StringContent("1"), "json");
 
-            var inResponse = await _httpClient.PostAsync(baseUrl + "in.php", httpContent);
+            var inResponse = await _httpClient.PostAsync(ApiUrl + "in.php", httpContent);
             var inJson = await inResponse.Content.ReadAsStringAsync();
 
-            var @in = JsonConvert.DeserializeObject<TwoCaptchaResponse>(inJson);
+            var @in = JsonConvert.DeserializeObject<_2CaptchaResultInternal>(inJson);
             if (@in.Status == 0)
             {
-                return new TwoCaptchaResult(false, @in.Request);
+                return new _2CaptchaResult(false, @in.Request);
             }
             
             await Task.Delay(delaySeconds * 1000);
             return await GetResponse(@in.Request);
         }
 
-        private async Task<TwoCaptchaResult> Solve(string method, int delaySeconds, params KeyValuePair<string, string>[] args)
+        private async Task<_2CaptchaResult> Solve(string method, int delaySeconds, params KeyValuePair<string, string>[] args)
         {
             var postData = new List<KeyValuePair<string, string>>
             {
@@ -82,28 +82,28 @@ namespace _2Captcha
 
             postData.AddRange(args);
 
-            var inResponse = await _httpClient.PostAsync(baseUrl + "in.php", new FormUrlEncodedContent(postData));
+            var inResponse = await _httpClient.PostAsync(ApiUrl + "in.php", new FormUrlEncodedContent(postData));
             var inJson = await inResponse.Content.ReadAsStringAsync();
 
-            var @in = JsonConvert.DeserializeObject<TwoCaptchaResponse>(inJson);
+            var @in = JsonConvert.DeserializeObject<_2CaptchaResultInternal>(inJson);
             if (@in.Status == 0)
             {
-                return new TwoCaptchaResult(false, @in.Request);
+                return new _2CaptchaResult(false, @in.Request);
             }
             
             await Task.Delay(delaySeconds * 1000);
             return await GetResponse(@in.Request);
         }
 
-        private async Task<TwoCaptchaResult> GetResponse(string solveId)
+        private async Task<_2CaptchaResult> GetResponse(string solveId)
         {
             var apiKeySafe = Uri.EscapeUriString(_apiKey);
 
             while (true)
             {
-                var resJson = await _httpClient.GetStringAsync(baseUrl + $"res.php?key={apiKeySafe}&id={solveId}&action=get&json=1");
+                var resJson = await _httpClient.GetStringAsync(ApiUrl + $"res.php?key={apiKeySafe}&id={solveId}&action=get&json=1");
 
-                var res = JsonConvert.DeserializeObject<TwoCaptchaResponse>(resJson);
+                var res = JsonConvert.DeserializeObject<_2CaptchaResultInternal>(resJson);
                 if (res.Status == 0)
                 {
                     if (res.Request == "CAPCHA_NOT_READY")
@@ -113,16 +113,16 @@ namespace _2Captcha
                     }
                     else
                     {
-                        return new TwoCaptchaResult(false, res.Request);
+                        return new _2CaptchaResult(false, res.Request);
                     }
                 }
 
-                return new TwoCaptchaResult(true, res.Request);
+                return new _2CaptchaResult(true, res.Request);
             }
         }
 
         
-        public async Task<TwoCaptchaResult> SolveImage(Stream imageStream)
+        public async Task<_2CaptchaResult> SolveImage(Stream imageStream)
         {
             var httpContent = new MultipartFormDataContent
             {
@@ -132,19 +132,26 @@ namespace _2Captcha
             return await Solve("post", 5, httpContent);
         }
 
-        public async Task<TwoCaptchaResult> SolveImage(string imageBase64)
+        public async Task<_2CaptchaResult> SolveImage(string imageBase64)
         {
             return await Solve("base64", 5,
                 new KeyValuePair<string, string>("body", imageBase64));
         }
 
-        public async Task<TwoCaptchaResult> SolveQuestion(string question)
+        public async Task<_2CaptchaResult> SolveQuestion(string question)
         {
             return await Solve("textcaptcha", 5,
                 new KeyValuePair<string, string>("textcaptcha", question));
         }
 
-        public async Task<TwoCaptchaResult> SolveReCaptchaV2(string googleSiteKey, string pageUrl, bool invisible = false)
+        public async Task<_2CaptchaResult> SolveHCaptcha(string siteKey, string pageUrl)
+        {
+             return await Solve("hcaptcha", 10,
+                new KeyValuePair<string, string>("sitekey", siteKey),
+                new KeyValuePair<string, string>("pageurl", pageUrl));
+        }
+
+        public async Task<_2CaptchaResult> SolveReCaptchaV2(string googleSiteKey, string pageUrl, bool invisible = false)
         {
             return await Solve("userrecaptcha", 10,
                 new KeyValuePair<string, string>("googlekey", googleSiteKey),
@@ -152,7 +159,7 @@ namespace _2Captcha
                 new KeyValuePair<string, string>("invisible", invisible ? "1" : "0"));
         }
 
-        public async Task<TwoCaptchaResult> SolveReCaptchaV3(string googleSiteKey, string pageUrl, string action = "verify", double minScore = 0.4)
+        public async Task<_2CaptchaResult> SolveReCaptchaV3(string googleSiteKey, string pageUrl, string action = "verify", double minScore = 0.4)
         {
             return await Solve("userrecaptcha", 10,
                 new KeyValuePair<string, string>("googlekey", googleSiteKey),
@@ -162,7 +169,7 @@ namespace _2Captcha
                 new KeyValuePair<string, string>("min_score", minScore.ToString(CultureInfo.InvariantCulture)));
         }
 
-        public async Task<TwoCaptchaResult> SolveClickCaptcha(Stream imageStream, string task)
+        public async Task<_2CaptchaResult> SolveClickCaptcha(Stream imageStream, string task)
         {
             var httpContent = new MultipartFormDataContent
             {
@@ -174,7 +181,7 @@ namespace _2Captcha
             return await Solve("post", 5, httpContent);
         }
 
-        public async Task<TwoCaptchaResult> SolveClickCaptcha(string imageBase64, string task)
+        public async Task<_2CaptchaResult> SolveClickCaptcha(string imageBase64, string task)
         {
             return await Solve("base64", 5,
                 new KeyValuePair<string, string>("coordinatescaptcha", "1"),
@@ -182,7 +189,7 @@ namespace _2Captcha
                 new KeyValuePair<string, string>("textinstructions", task));
         }
 
-        public async Task<TwoCaptchaResult> SolveRotateCaptcha(Stream[] imageStreams, string rotateAngle)
+        public async Task<_2CaptchaResult> SolveRotateCaptcha(Stream[] imageStreams, string rotateAngle)
         {
             var httpContent = new MultipartFormDataContent
             {
@@ -197,7 +204,7 @@ namespace _2Captcha
             return await Solve("rotatecaptcha", 5, httpContent);
         }
 
-        public async Task<TwoCaptchaResult> SolveFunCaptcha(string funCaptchaPublicKey, string pageUrl, bool noJavaScript = false)
+        public async Task<_2CaptchaResult> SolveFunCaptcha(string funCaptchaPublicKey, string pageUrl, bool noJavaScript = false)
         {
             return await Solve("funcaptcha", 10,
                 new KeyValuePair<string, string>("publickey", funCaptchaPublicKey),
@@ -205,7 +212,7 @@ namespace _2Captcha
                 new KeyValuePair<string, string>("nojs", noJavaScript ? "1" : "0"));
         }
 
-        public async Task<TwoCaptchaResult> SolveKeyCaptcha(string userId, string sessionId, string webServerSign, string webServerSign2, string pageUrl)
+        public async Task<_2CaptchaResult> SolveKeyCaptcha(string userId, string sessionId, string webServerSign, string webServerSign2, string pageUrl)
         {
             return await Solve("keycaptcha", 15,
                 new KeyValuePair<string, string>("s_s_c_user_id", userId),
