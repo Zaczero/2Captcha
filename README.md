@@ -1,4 +1,4 @@
-# ![Zaczero/2Captcha logo](https://i.imgur.com/sCDANG3.png)
+# ![Zaczero/2Captcha logo](https://github.com/Zaczero/2Captcha/blob/master/resources/2captcha.png)
 
 ![github version](https://img.shields.io/github/release/Zaczero/2Captcha.svg)
 ![nuget version](https://img.shields.io/nuget/v/2CaptchaAPI.svg)
@@ -7,67 +7,80 @@
 Simple HTTP API wrapper for [2captcha.com](https://2captcha.com/)  
 An online captcha solving and image recognition service.
 
-### 🔗 Download
+## 🌤️ Installation
 
-* Latest release - [github.com/Zaczero/2Captcha/releases/latest](https://github.com/Zaczero/2Captcha/releases/latest)
+### Install with NuGet (recommended)
 
-### 🏁 Sample code
+`Install-Package 2CaptchaAPI`
+
+### Install manually
+
+[Browse latest GitHub release](https://github.com/Zaczero/2Captcha/releases/latest)
+
+## 🏁 Getting started
+
+### Sample code
 
 ```cs
-var twoCaptcha = new TwoCaptcha(" ## YOUR API KEY ## ");
+var captcha = new _2Captcha(" ## YOUR API KEY ## ");
+// .. additionally you can pass your own httpClient class
+var captchaWithHttpClient = new _2Captcha(" ## YOUR API KEY ## ", new HttpClient());
 
 // Get current balance
-var balance = await twoCaptcha.GetBalance();
+var balance = await captcha.GetBalance();
 
 // Solve image captcha
-var image1 = await twoCaptcha.SolveImage(new FileStream("captcha.png", FileMode.Open));
-var image2 = await twoCaptcha.SolveImage("data:image/png;base64,iVBORw0KGgo...");
+var image1 = await captcha.SolveImage(new FileStream("captcha.png", FileMode.Open));
+var image2 = await captcha.SolveImage("data:image/png;base64,iVBORw0KGgo...");
 
 // Solve text captcha
-var question = await twoCaptcha.SolveQuestion("1 + 3 = ?");
+var question = await captcha.SolveQuestion("1 + 3 = ?");
+
+// Solve hCaptcha
+var hcaptcha = await captcha.SolveHCaptcha("HCAPTCHA_SITE_KEY", "https://example.com");
 
 // Solve ReCaptchaV2
-var recaptcha = await twoCaptcha.SolveReCaptchaV2("GOOGLE_SITE_KEY", "https://example.com");
-var recaptchaInvisible = await twoCaptcha.SolveReCaptchaV2("GOOGLE_SITE_KEY", "https://example.com", true);
+var recaptcha = await captcha.SolveReCaptchaV2("GOOGLE_SITE_KEY", "https://example.com");
+var recaptchaInvisible = await captcha.SolveReCaptchaV2("GOOGLE_SITE_KEY", "https://example.com", true);
 
 // Solve ReCaptchaV3
-var recaptcha3 = await twoCaptcha.SolveReCaptchaV3("GOOGLE_SITE_KEY", "https://example.com", "ACTION", 0.4);
+var recaptcha3 = await captcha.SolveReCaptchaV3("GOOGLE_SITE_KEY", "https://example.com", "ACTION", 0.4);
 
 // Solve ClickCaptcha
-var click1 = await twoCaptcha.SolveClickCaptcha(new FileStream("captcha.png", FileMode.Open), "Click on ghosts");
-var click2 = await twoCaptcha.SolveClickCaptcha("data:image/png;base64,iVBORw0KGgo...", "Click on ghosts");
+var click1 = await captcha.SolveClickCaptcha(new FileStream("captcha.png", FileMode.Open), "Click on ghosts");
+var click2 = await captcha.SolveClickCaptcha("data:image/png;base64,iVBORw0KGgo...", "Click on ghosts");
 
 // Solve RotateCaptcha
-var rotate = await twoCaptcha.SolveRotateCaptcha(new Stream[] {new FileStream("captcha.png", FileMode.Open)}, "40");
+var rotate = await captcha.SolveRotateCaptcha(new Stream[] {new FileStream("captcha.png", FileMode.Open)}, "40");
 
 // Solve FunCaptcha
-var fun = await twoCaptcha.SolveFunCaptcha("FUN_CAPTCHA_PUBLIC_KEY", "https://example.com");
-var funNoJavaScript = await twoCaptcha.SolveFunCaptcha("FUN_CAPTCHA_PUBLIC_KEY", "https://example.com", true);
+var fun = await captcha.SolveFunCaptcha("FUN_CAPTCHA_PUBLIC_KEY", "https://example.com");
+var funNoJavaScript = await captcha.SolveFunCaptcha("FUN_CAPTCHA_PUBLIC_KEY", "https://example.com", true);
 
 // Solve KeyCaptcha
-var key = await twoCaptcha.SolveKeyCaptcha("USER_ID", "SESSION_ID", "WEB_SIGN_1", "WEB_SIGN_2", "https://example.com");
+var key = await captcha.SolveKeyCaptcha("USER_ID", "SESSION_ID", "WEB_SIGN_1", "WEB_SIGN_2", "https://example.com");
 ```
 
-#### And here is the result structure *(same for all methods)*:
+### And here is the result structure *(same for all methods)*:
 
 ```cs
-public struct TwoCaptchaResult
+public struct _2CaptchaResult
 {
 	public bool Success;
 	public string Response;
 
-	public TwoCaptchaResult(bool success, string response)
+	public _2CaptchaResult(bool success, string response)
 	{
 		Success = success;
 		Response = response;
 	}
 }
 ```
+## Footer
 
-### ☕ Support me
+### 📧 Contact
 
-* Bitcoin: `35n1y9iHePKsVTobs4FJEkbfnBg2NtVbJW`
-* Ethereum: `0xc69C7FC9Ce691c95f38798506EfdBB8d14005B67`
+* Email: [kamil@monicz.pl](mailto:kamil@monicz.pl)
 
 ### 📃 License
 
