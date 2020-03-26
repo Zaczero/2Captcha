@@ -61,21 +61,22 @@ var funNoJavaScript = await captcha.SolveFunCaptcha("FUN_CAPTCHA_PUBLIC_KEY", "h
 var key = await captcha.SolveKeyCaptcha("USER_ID", "SESSION_ID", "WEB_SIGN_1", "WEB_SIGN_2", "https://example.com");
 ```
 
-### And here is the result structure *(same for all methods)*:
+### And here is the result structure *(the same for all methods)*
 
 ```cs
 public struct _2CaptchaResult
 {
-	public bool Success;
-	public string Response;
+    public bool Success;
+    public string Response;
 
-	public _2CaptchaResult(bool success, string response)
-	{
-		Success = success;
-		Response = response;
-	}
+    public _2CaptchaResult(bool success, string response)
+    {
+        Success = success;
+        Response = response;
+    }
 }
 ```
+
 ## Footer
 
 ### 📧 Contact
