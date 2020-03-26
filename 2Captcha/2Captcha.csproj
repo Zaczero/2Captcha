@@ -5,20 +5,30 @@
     <RootNamespace>2Captcha</RootNamespace>
     <Authors>Zaczero (Kamil Monicz)</Authors>
     <Description>Simple API wrapper for https://2captcha.com/</Description>
-    <Copyright>Copyright (c) Zaczero (Kamil Monicz) 2019</Copyright>
-    <PackageLicenseUrl>https://github.com/Zaczero/2Captcha/blob/master/LICENSE</PackageLicenseUrl>
+    <Copyright>Copyright © Kamil Monicz 2020</Copyright>
+    <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Zaczero/2Captcha</PackageProjectUrl>
-    <PackageIconUrl>https://i.imgur.com/2HiKUjL.png</PackageIconUrl>
-    <Version>1.4</Version>
-    <PackageTags>2captcha, captcha, solver, recaptcha, google, text, image, wrapper, api</PackageTags>
+    <PackageIconUrl></PackageIconUrl>
+    <Version>1.5.1</Version>
+    <PackageTags>2captcha, captcha, solver, hcaptcha, recaptcha, google, text, image, wrapper, api</PackageTags>
     <PackageId>2CaptchaAPI</PackageId>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <AssemblyVersion>1.4.0.0</AssemblyVersion>
-    <FileVersion>1.4.0.0</FileVersion>
+    <AssemblyVersion>1.5.1.0</AssemblyVersion>
+    <FileVersion>1.5.1.0</FileVersion>
+    <RepositoryUrl>https://github.com/Zaczero/2Captcha</RepositoryUrl>
+    <PackageIcon>2captcha.png</PackageIcon>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\resources\2captcha.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
