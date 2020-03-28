@@ -18,6 +18,9 @@ namespace _2Captcha.Test
             // .. additionally you can pass your own httpClient class
             var captchaWithHttpClient = new _2Captcha(" ## YOUR API KEY ## ", new HttpClient());
 
+            // Need to set a custom api url? This step is optional.
+            captcha.SetApiUrl("https://CUSTOM_URL/");
+
             // Get current balance
             var balance = await captcha.GetBalance();
 

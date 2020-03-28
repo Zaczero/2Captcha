@@ -20,7 +20,7 @@ namespace _2Captcha
             public string Request;
         }
 
-        private const string ApiUrl = "https://2captcha.com/";
+        private string _apiUrl = "https://2captcha.com/";
 
         private readonly HttpClient _httpClient;
         private readonly string _apiKey;
@@ -29,6 +29,17 @@ namespace _2Captcha
         {
             _httpClient = httpClient ?? new HttpClient();
             _apiKey = apiKey;
+        }
+
+        public void SetApiUrl(string url)
+        {
+            if (!url.EndsWith("/"))
+            {
+                 _apiUrl = url + "/";
+                 return;
+            }
+
+            _apiUrl = url;
         }
 
         public async Task<_2CaptchaResult> GetBalance()
@@ -40,7 +51,7 @@ namespace _2Captcha
                 new KeyValuePair<string, string>("json", "1")
             };
 
-            var inResponse = await _httpClient.PostAsync(ApiUrl + "res.php", new FormUrlEncodedContent(getData));
+            var inResponse = await _httpClient.PostAsync(_apiUrl + "res.php", new FormUrlEncodedContent(getData));
             var inJson = await inResponse.Content.ReadAsStringAsync();
 
             var @in = JsonConvert.DeserializeObject<_2CaptchaResultInternal>(inJson);
@@ -58,7 +69,7 @@ namespace _2Captcha
             httpContent.Add(new StringContent(method), "method");
             httpContent.Add(new StringContent("1"), "json");
 
-            var inResponse = await _httpClient.PostAsync(ApiUrl + "in.php", httpContent);
+            var inResponse = await _httpClient.PostAsync(_apiUrl + "in.php", httpContent);
             var inJson = await inResponse.Content.ReadAsStringAsync();
 
             var @in = JsonConvert.DeserializeObject<_2CaptchaResultInternal>(inJson);
@@ -82,7 +93,7 @@ namespace _2Captcha
 
             postData.AddRange(args);
 
-            var inResponse = await _httpClient.PostAsync(ApiUrl + "in.php", new FormUrlEncodedContent(postData));
+            var inResponse = await _httpClient.PostAsync(_apiUrl + "in.php", new FormUrlEncodedContent(postData));
             var inJson = await inResponse.Content.ReadAsStringAsync();
 
             var @in = JsonConvert.DeserializeObject<_2CaptchaResultInternal>(inJson);
@@ -101,7 +112,7 @@ namespace _2Captcha
 
             while (true)
             {
-                var resJson = await _httpClient.GetStringAsync(ApiUrl + $"res.php?key={apiKeySafe}&id={solveId}&action=get&json=1");
+                var resJson = await _httpClient.GetStringAsync(_apiUrl + $"res.php?key={apiKeySafe}&id={solveId}&action=get&json=1");
 
                 var res = JsonConvert.DeserializeObject<_2CaptchaResultInternal>(resJson);
                 if (res.Status == 0)
