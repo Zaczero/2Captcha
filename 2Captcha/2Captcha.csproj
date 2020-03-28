@@ -9,12 +9,12 @@
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Zaczero/2Captcha</PackageProjectUrl>
     <PackageIconUrl></PackageIconUrl>
-    <Version>1.5.1</Version>
+    <Version>1.6</Version>
     <PackageTags>2captcha, captcha, solver, hcaptcha, recaptcha, google, text, image, wrapper, api</PackageTags>
     <PackageId>2CaptchaAPI</PackageId>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <AssemblyVersion>1.5.1.0</AssemblyVersion>
-    <FileVersion>1.5.1.0</FileVersion>
+    <AssemblyVersion>1.6.0.0</AssemblyVersion>
+    <FileVersion>1.6.0.0</FileVersion>
     <RepositoryUrl>https://github.com/Zaczero/2Captcha</RepositoryUrl>
     <PackageIcon>2captcha.png</PackageIcon>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
