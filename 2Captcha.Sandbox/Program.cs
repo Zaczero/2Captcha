@@ -5,57 +5,125 @@ using System.Threading.Tasks;
 
 namespace _2Captcha.Test
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Foo().GetAwaiter().GetResult();
-        }
+	public static class Program
+	{
+		public static void Main(string[] args)
+		{
+			Foo().GetAwaiter().GetResult();
+		}
 
-        static async Task Foo()
-        {
-            var captcha = new _2Captcha(" ## YOUR API KEY ## ");
-            // .. additionally you can pass your own httpClient class
-            var captchaWithHttpClient = new _2Captcha(" ## YOUR API KEY ## ", new HttpClient());
+		private static async Task Foo()
+		{
+			/*
+			 * Class initialization
+			 * Optionally you can pass 2nd parameter `httpClient` with custom HttpClient to use while requesting API
+			 */
+			var captcha = new _2Captcha("API_KEY");
+			var captchaCustomHttp = new _2Captcha("API_KEY", new HttpClient());
 
-            // Need to set a custom api url? This step is optional.
-            captcha.SetApiUrl("https://CUSTOM_URL/");
+			/*
+			 * Set custom API url (optional)
+			 */
+			captcha.SetApiUrl("https://CUSTOM_URL");
 
-            // Get current balance
-            var balance = await captcha.GetBalance();
+			/*
+			 * Get current balance
+			 */
+			var balance = await captcha.GetBalance();
 
-            // Solve image captcha
-            var image1 = await captcha.SolveImage(new FileStream("captcha.png", FileMode.Open));
-            var image2 = await captcha.SolveImage("data:image/png;base64,iVBORw0KGgo...");
+			/*
+			 * Type: Image
+			 *
+			 * Documentation (2captcha): https://2captcha.com/2captcha-api#solving_normal_captcha
+			 */
+			var image = await captcha.SolveImage(new FileStream("captcha.png", FileMode.Open), FileType.Png);
+			var image2 = await captcha.SolveImage(File.ReadAllBytes("captcha.png"), FileType.Png);
+			var image3 = await captcha.SolveImage("BASE64_IMAGE", FileType.Png);
 
-            // Solve text captcha
-            var question = await captcha.SolveQuestion("1 + 3 = ?");
+			/*
+			 * Type: Text
+			 *
+			 * Documentation (2captcha): https://2captcha.com/2captcha-api#solving_text_captcha
+			 */
+			var question = await captcha.SolveQuestion("1 + 3 = ?");
 
-            // Solve hCaptcha
-            var hcaptcha = await captcha.SolveHCaptcha("HCAPTCHA_SITE_KEY", "https://example.com");
+			/*
+			 * Type: ReCaptcha V2
+			 * Optionally you can pass 3rd parameter `isInvisible` to indicate if the reCaptcha is setup as invisible
+			 *
+			 * Homepage: https://www.google.com/recaptcha/
+			 * Documentation (vendor): https://developers.google.com/recaptcha/docs/display
+			 * Documentation (2captcha): https://2captcha.com/2captcha-api#solving_recaptchav2_new
+			 */
+			var reCaptcha = await captcha.SolveReCaptchaV2("SITE_KEY", "https://WEBSITE_URL");
+			var reCaptchaInvisible = await captcha.SolveReCaptchaV2("SITE_KEY", "https://WEBSITE_URL", true);
 
-            // Solve ReCaptchaV2
-            var recaptcha = await captcha.SolveReCaptchaV2("GOOGLE_SITE_KEY", "https://example.com");
-            var recaptchaInvisible = await captcha.SolveReCaptchaV2("GOOGLE_SITE_KEY", "https://example.com", true);
+			/*
+			 * Type: ReCaptcha V3
+			 *
+			 * Homepage: https://www.google.com/recaptcha/
+			 * Documentation (vendor): https://developers.google.com/recaptcha/docs/v3
+			 * Documentation (2captcha): https://2captcha.com/2captcha-api#solving_recaptchav3
+			 */
+			var reCaptchaV3 = await captcha.SolveReCaptchaV3("SITE_KEY", "https://WEBSITE_URL", "ACTION", 0.4);
 
-            // Solve ReCaptchaV3
-            var recaptcha3 = await captcha.SolveReCaptchaV3("GOOGLE_SITE_KEY", "https://example.com", "ACTION", 0.4);
+			/*
+			 * Type: hCaptcha
+			 *
+			 * Homepage: https://www.hcaptcha.com/
+			 * Documentation (vendor): https://docs.hcaptcha.com/
+			 * Documentation (2captcha): https://2captcha.com/2captcha-api#solving_hcaptcha
+			 */
+			var hCaptcha = await captcha.SolveHCaptcha("SITE_KEY", "https://WEBSITE_URL");
 
-            // Solve ClickCaptcha
-            var click1 = await captcha.SolveClickCaptcha(new FileStream("captcha.png", FileMode.Open), "Click on ghosts");
-            var click2 = await captcha.SolveClickCaptcha("data:image/png;base64,iVBORw0KGgo...", "Click on ghosts");
+			/*
+			 * Type: GeeTest
+			 *
+			 * Homepage: https://www.geetest.com/en
+			 * Documentation (vendor): https://docs.geetest.com/en
+			 * Documentation (2captcha): https://2captcha.com/2captcha-api#solving_geetest
+			 */
+			var geeTest = await captcha.SolveGeeTest("SITE_KEY", "https://WEBSITE_URL", "CHALLENGE");
 
-            // Solve RotateCaptcha
-            var rotate = await captcha.SolveRotateCaptcha(new Stream[] {new FileStream("captcha.png", FileMode.Open)}, "40");
+			/*
+			 * Type: ClickCaptcha
+			 *
+			 * Documentation (2captcha): https://2captcha.com/2captcha-api#solving_clickcaptcha
+			 */
+			var clickCaptcha = await captcha.SolveClickCaptcha(new FileStream("captcha.png", FileMode.Open), FileType.Png, "TASK");
+			var clickCaptcha2 = await captcha.SolveClickCaptcha(File.ReadAllBytes("captcha.png"), FileType.Png, "TASK");
+			var clickCaptcha3 = await captcha.SolveClickCaptcha("BASE64_IMAGE", FileType.Png, "TASK");
 
-            // Solve FunCaptcha
-            var fun = await captcha.SolveFunCaptcha("FUN_CAPTCHA_PUBLIC_KEY", "https://example.com");
-            var funNoJavaScript = await captcha.SolveFunCaptcha("FUN_CAPTCHA_PUBLIC_KEY", "https://example.com", true);
+			/*
+			 * Type: RotateCaptcha
+			 *
+			 * Documentation (2captcha): https://2captcha.com/2captcha-api#solving_rotatecaptcha
+			 */
+			var rotateCaptcha = await captcha.SolveRotateCaptcha(
+				new Stream[]
+				{
+					new FileStream("captcha1.png", FileMode.Open),
+					new FileStream("captcha2.png", FileMode.Open),
+					new FileStream("captcha3.png", FileMode.Open),
+				}, FileType.Png, "40");
 
-            // Solve KeyCaptcha
-            var key = await captcha.SolveKeyCaptcha("USER_ID", "SESSION_ID", "WEB_SIGN_1", "WEB_SIGN_2", "https://example.com");
+			/*
+			 * Type: FunCaptcha
+			 *
+			 * Documentation (2captcha): https://2captcha.com/2captcha-api#solving_funcaptcha_new
+			 */
+			var funCaptcha = await captcha.SolveFunCaptcha("PUBLIC_KEY", "https://WEBSITE_URL");
+			var funCaptchaNoJS = await captcha.SolveFunCaptcha("PUBLIC_KEY", "https://WEBSITE_URL", true);
 
-            Debugger.Break();
-        }
-    }
+			/*
+			 * Type: KeyCaptcha
+			 *
+			 * Homepage: https://www.keycaptcha.com/
+			 * Documentation (2captcha): https://2captcha.com/2captcha-api#solving_keycaptcha
+			 */
+			var keyCaptcha = await captcha.SolveKeyCaptcha("USER_ID", "SESSION_ID", "WEB_SIGN_1", "WEB_SIGN_2", "https://WEBSITE_URL");
+
+			Debugger.Break();
+		}
+	}
 }
