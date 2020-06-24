@@ -10,7 +10,7 @@ namespace _2Captcha
 		Socks5,
 	}
 
-	internal static class ProxyTypeEX
+	internal static class ProxyTypeEx
 	{
 		internal static string GetExtension(this ProxyType proxyType)
 		{
@@ -19,7 +19,7 @@ namespace _2Captcha
 				case ProxyType.Http:
 					return "HTTP";
 				case ProxyType.Https:
-					return "Https";
+					return "HTTPS";
 				case ProxyType.Socks4:
 					return "SOCKS4";
 				case ProxyType.Socks5:
