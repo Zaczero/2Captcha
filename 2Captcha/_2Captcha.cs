@@ -174,6 +174,7 @@ namespace _2CaptchaAPI
 				new KeyValuePair<string, string>("pageurl", pageUrl),
 				new KeyValuePair<string, string>("invisible", invisible ? "1" : "0"));
 		}
+
 		public async Task<_2CaptchaResult> SolveReCaptchaV2(string siteKey, string pageUrl, string proxy, ProxyType proxyType, bool invisible = false)
 		{
 			return await Solve("userrecaptcha", 10,
@@ -183,6 +184,7 @@ namespace _2CaptchaAPI
 				new KeyValuePair<string, string>("proxytype", proxyType.GetExtension()),
 				new KeyValuePair<string, string>("invisible", invisible ? "1" : "0")) ;
 		}
+
 		public async Task<_2CaptchaResult> SolveReCaptchaV3(string siteKey, string pageUrl, string action = "verify", double minScore = 0.4)
 		{
 			return await Solve("userrecaptcha", 10,
@@ -193,11 +195,32 @@ namespace _2CaptchaAPI
 				new KeyValuePair<string, string>("min_score", minScore.ToString(CultureInfo.InvariantCulture)));
 		}
 
+		public async Task<_2CaptchaResult> SolveReCaptchaV3(string siteKey, string pageUrl, string proxy, ProxyType proxyType, string action = "verify", double minScore = 0.4)
+		{
+			return await Solve("userrecaptcha", 10,
+				new KeyValuePair<string, string>("googlekey", siteKey),
+				new KeyValuePair<string, string>("pageurl", pageUrl),
+				new KeyValuePair<string, string>("action", action),
+				new KeyValuePair<string, string>("version", "v3"),
+				new KeyValuePair<string, string>("min_score", minScore.ToString(CultureInfo.InvariantCulture)),
+				new KeyValuePair<string, string>("proxy", proxy),
+				new KeyValuePair<string, string>("proxytype", proxyType.GetExtension()));
+		}
+
 		public async Task<_2CaptchaResult> SolveHCaptcha(string siteKey, string pageUrl)
 		{
 			return await Solve("hcaptcha", 10,
 				new KeyValuePair<string, string>("sitekey", siteKey),
 				new KeyValuePair<string, string>("pageurl", pageUrl));
+		}
+
+		public async Task<_2CaptchaResult> SolveHCaptcha(string siteKey, string pageUrl, string proxy, ProxyType proxyType)
+		{
+			return await Solve("hcaptcha", 10,
+				new KeyValuePair<string, string>("sitekey", siteKey),
+				new KeyValuePair<string, string>("pageurl", pageUrl),
+				new KeyValuePair<string, string>("proxy", proxy),
+				new KeyValuePair<string, string>("proxytype", proxyType.GetExtension()));
 		}
 
 		public async Task<_2CaptchaResult> SolveGeeTest(string siteKey, string pageUrl, string challenge)
@@ -265,6 +288,7 @@ namespace _2CaptchaAPI
 				new KeyValuePair<string, string>("pageurl", pageUrl),
 				new KeyValuePair<string, string>("nojs", noJavaScript ? "1" : "0"));
 		}
+
 		public async Task<_2CaptchaResult> SolveFunCaptcha(string publicKey, string pageUrl, string proxy, ProxyType proxyType, bool noJavaScript = false)
 		{
 			return await Solve("funcaptcha", 10,
@@ -274,6 +298,7 @@ namespace _2CaptchaAPI
 				new KeyValuePair<string, string>("proxytype", proxyType.GetExtension()),
 				new KeyValuePair<string, string>("nojs", noJavaScript ? "1" : "0"));
 		}
+
 		public async Task<_2CaptchaResult> SolveKeyCaptcha(string userId, string sessionId, string webServerSign, string webServerSign2, string pageUrl)
 		{
 			return await Solve("keycaptcha", 15,
