@@ -1,13 +1,14 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+
 #pragma warning disable 649
 
-namespace _2Captcha
+namespace _2CaptchaAPI
 {
 	public class _2Captcha
 	{

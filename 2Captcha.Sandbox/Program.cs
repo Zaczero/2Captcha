@@ -3,7 +3,7 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace _2Captcha.Test
+namespace _2CaptchaAPI.Test
 {
 	public static class Program
 	{

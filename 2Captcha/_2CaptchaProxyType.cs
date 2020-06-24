@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace _2Captcha
+namespace _2CaptchaAPI
 {
 	public enum ProxyType
 	{

@@ -1,4 +1,4 @@
-﻿namespace _2Captcha
+﻿namespace _2CaptchaAPI
 {
 	public struct _2CaptchaResult
     {
