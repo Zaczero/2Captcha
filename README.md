@@ -67,6 +67,7 @@ var question = await captcha.SolveQuestion("1 + 3 = ?");
  */
 var reCaptcha = await captcha.SolveReCaptchaV2("SITE_KEY", "https://WEBSITE_URL");
 var reCaptchaInvisible = await captcha.SolveReCaptchaV2("SITE_KEY", "https://WEBSITE_URL", true);
+var reCaptchaWithProxy = await captcha.SolveReCaptchaV2("SITE_KEY", "https://WEBSITE_URL", "username:password@address:port", ProxyType.Http);
 
 /*
  * Type: ReCaptcha V3
@@ -76,6 +77,7 @@ var reCaptchaInvisible = await captcha.SolveReCaptchaV2("SITE_KEY", "https://WEB
  * Documentation (2captcha): https://2captcha.com/2captcha-api#solving_recaptchav3
  */
 var reCaptchaV3 = await captcha.SolveReCaptchaV3("SITE_KEY", "https://WEBSITE_URL", "ACTION", 0.4);
+var reCaptchaV3WithProxy = await captcha.SolveReCaptchaV3("SITE_KEY", "https://WEBSITE_URL", "username:password@address:port", ProxyType.Http, "ACTION", 0.4);
 
 /*
  * Type: hCaptcha
@@ -85,6 +87,7 @@ var reCaptchaV3 = await captcha.SolveReCaptchaV3("SITE_KEY", "https://WEBSITE_UR
  * Documentation (2captcha): https://2captcha.com/2captcha-api#solving_hcaptcha
  */
 var hCaptcha = await captcha.SolveHCaptcha("SITE_KEY", "https://WEBSITE_URL");
+var hCaptchaWithProxy = await captcha.SolveHCaptcha("SITE_KEY", "https://WEBSITE_URL", "username:password@address:port", ProxyType.Http);
 
 /*
  * Type: GeeTest
@@ -123,7 +126,8 @@ var rotateCaptcha = await captcha.SolveRotateCaptcha(
  * Documentation (2captcha): https://2captcha.com/2captcha-api#solving_funcaptcha_new
  */
 var funCaptcha = await captcha.SolveFunCaptcha("PUBLIC_KEY", "https://WEBSITE_URL");
-var funCaptchaNoJS = await captcha.SolveFunCaptcha("PUBLIC_KEY", "https://WEBSITE_URL", true);
+var funCaptchaNoJavaScript = await captcha.SolveFunCaptcha("PUBLIC_KEY", "https://WEBSITE_URL", true);
+var funCaptchaWithProxy = await captcha.SolveFunCaptcha("PUBLIC_KEY", "https://WEBSITE_URL", "username:password@address:port", ProxyType.Http);
 
 /*
  * Type: KeyCaptcha
