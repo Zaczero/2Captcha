@@ -281,12 +281,34 @@ namespace _2CaptchaAPI
 			return await Solve("rotatecaptcha", 5, httpContent);
 		}
 
-		public async Task<_2CaptchaResult> SolveFunCaptcha(string publicKey, string pageUrl, bool noJavaScript = false)
+		public async Task<_2CaptchaResult> SolveFunCaptcha(string publicKey, string pageUrl, string sUrl = null, string userAgent = null, Dictionary<string, string> data = null, bool noJavaScript = false)
 		{
-			return await Solve("funcaptcha", 10,
+			var args = new List<KeyValuePair<string, string>>
+			{
 				new KeyValuePair<string, string>("publickey", publicKey),
 				new KeyValuePair<string, string>("pageurl", pageUrl),
-				new KeyValuePair<string, string>("nojs", noJavaScript ? "1" : "0"));
+				new KeyValuePair<string, string>("nojs", noJavaScript ? "1" : "0")
+			};
+
+			if (!string.IsNullOrEmpty(sUrl))
+			{
+				args.Add(new KeyValuePair<string, string>("surl", sUrl));
+			}
+
+			if (!string.IsNullOrEmpty(userAgent))
+			{
+				args.Add(new KeyValuePair<string, string>("userAgent", userAgent));
+			}
+
+			if (data != null && data.Count > 0)
+			{
+				foreach (var pair in data)
+				{
+					args.Add(new KeyValuePair<string, string>($"data[{pair.Key}]", pair.Value));
+				}
+			}
+			
+			return await Solve("funcaptcha", 10, args.ToArray());
 		}
 
 		public async Task<_2CaptchaResult> SolveFunCaptcha(string publicKey, string pageUrl, string proxy, ProxyType proxyType, bool noJavaScript = false)
