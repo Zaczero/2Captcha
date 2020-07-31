@@ -9,11 +9,11 @@
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Zaczero/2Captcha</PackageProjectUrl>
     <PackageIconUrl></PackageIconUrl>
-    <Version>1.8</Version>
-    <PackageTags>2captcha, captcha, solver, hcaptcha, recaptcha, google, text, image, wrapper, api, geetest</PackageTags>
+    <Version>1.9</Version>
+    <PackageTags>2captcha, captcha, solver, hcaptcha, recaptcha, google, text, image, wrapper, api, geetest, funcaptcha, tiktok, capy, puzzle</PackageTags>
     <PackageId>2CaptchaAPI</PackageId>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <AssemblyVersion>1.8.0.0</AssemblyVersion>
+    <AssemblyVersion>1.9.0.0</AssemblyVersion>
     <FileVersion>1.8.0.0</FileVersion>
     <RepositoryUrl>https://github.com/Zaczero/2Captcha</RepositoryUrl>
     <PackageIcon>2captcha.png</PackageIcon>
