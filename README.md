@@ -113,12 +113,12 @@ var clickCaptcha3 = await captcha.SolveClickCaptcha("BASE64_IMAGE", FileType.Png
  * Documentation (2captcha): https://2captcha.com/2captcha-api#solving_rotatecaptcha
  */
 var rotateCaptcha = await captcha.SolveRotateCaptcha(
-	new Stream[]
-	{
-		new FileStream("captcha1.png", FileMode.Open),
-		new FileStream("captcha2.png", FileMode.Open),
-		new FileStream("captcha3.png", FileMode.Open),
-	}, FileType.Png, "40");
+    new Stream[]
+    {
+        new FileStream("captcha1.png", FileMode.Open),
+        new FileStream("captcha2.png", FileMode.Open),
+        new FileStream("captcha3.png", FileMode.Open),
+    }, FileType.Png, "40");
 
 /*
  * Type: FunCaptcha
