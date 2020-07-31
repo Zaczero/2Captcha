@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -281,7 +282,7 @@ namespace _2CaptchaAPI
 			return await Solve("rotatecaptcha", 5, httpContent);
 		}
 
-		public async Task<_2CaptchaResult> SolveFunCaptcha(string publicKey, string pageUrl, string sUrl = null, string userAgent = null, Dictionary<string, string> data = null, bool noJavaScript = false)
+		public async Task<_2CaptchaResult> SolveFunCaptcha(string publicKey, string pageUrl, bool noJavaScript = false, string userAgent = null, string sUrl = null, Dictionary<string, object> data = null)
 		{
 			var args = new List<KeyValuePair<string, string>>
 			{
@@ -290,35 +291,43 @@ namespace _2CaptchaAPI
 				new KeyValuePair<string, string>("nojs", noJavaScript ? "1" : "0")
 			};
 
-			if (!string.IsNullOrEmpty(sUrl))
-			{
-				args.Add(new KeyValuePair<string, string>("surl", sUrl));
-			}
-
 			if (!string.IsNullOrEmpty(userAgent))
-			{
 				args.Add(new KeyValuePair<string, string>("userAgent", userAgent));
-			}
 
-			if (data != null && data.Count > 0)
-			{
-				foreach (var pair in data)
-				{
-					args.Add(new KeyValuePair<string, string>($"data[{pair.Key}]", pair.Value));
-				}
-			}
+			if (!string.IsNullOrEmpty(sUrl))
+				args.Add(new KeyValuePair<string, string>("surl", sUrl));
+
+			if (data != null)
+				args.AddRange(
+					data.Select(pair => new KeyValuePair<string, string>($"data[{pair.Key}]", pair.Value.ToString()))
+				);
 			
 			return await Solve("funcaptcha", 10, args.ToArray());
 		}
 
-		public async Task<_2CaptchaResult> SolveFunCaptcha(string publicKey, string pageUrl, string proxy, ProxyType proxyType, bool noJavaScript = false)
+		public async Task<_2CaptchaResult> SolveFunCaptcha(string publicKey, string pageUrl, string proxy, ProxyType proxyType, bool noJavaScript = false, string userAgent = null, string sUrl = null, Dictionary<string, object> data = null)
 		{
-			return await Solve("funcaptcha", 10,
+			var args = new List<KeyValuePair<string, string>>
+			{
 				new KeyValuePair<string, string>("publickey", publicKey),
 				new KeyValuePair<string, string>("pageurl", pageUrl),
 				new KeyValuePair<string, string>("proxy", proxy),
 				new KeyValuePair<string, string>("proxytype", proxyType.GetExtension()),
-				new KeyValuePair<string, string>("nojs", noJavaScript ? "1" : "0"));
+				new KeyValuePair<string, string>("nojs", noJavaScript ? "1" : "0")
+			};
+
+			if (!string.IsNullOrEmpty(userAgent))
+				args.Add(new KeyValuePair<string, string>("userAgent", userAgent));
+
+			if (!string.IsNullOrEmpty(sUrl))
+				args.Add(new KeyValuePair<string, string>("surl", sUrl));
+
+			if (data != null)
+				args.AddRange(
+					data.Select(pair => new KeyValuePair<string, string>($"data[{pair.Key}]", pair.Value.ToString()))
+				);
+			
+			return await Solve("funcaptcha", 10, args.ToArray());
 		}
 
 		public async Task<_2CaptchaResult> SolveKeyCaptcha(string userId, string sessionId, string webServerSign, string webServerSign2, string pageUrl)
