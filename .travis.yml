@@ -1,0 +1,7 @@
+language: csharp
+solution: 2Captcha.sln
+mono: none
+dotnet: 2.1.809
+script:
+ - dotnet build -c Debug
+ - dotnet build -c Release
