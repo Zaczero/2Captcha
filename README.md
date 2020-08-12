@@ -1,8 +1,9 @@
 # ![Zaczero/2Captcha logo](https://github.com/Zaczero/2Captcha/blob/master/resources/2captcha.png)
 
-[![github version](https://img.shields.io/github/release/Zaczero/2Captcha.svg)](https://github.com/Zaczero/2Captcha/releases/latest)
-[![nuget version](https://img.shields.io/nuget/v/2CaptchaAPI.svg)](https://www.nuget.org/packages/2CaptchaAPI/)
-[![license type](https://img.shields.io/github/license/Zaczero/2Captcha.svg)](https://github.com/Zaczero/2Captcha/blob/master/LICENSE)
+[![Build Status](https://travis-ci.com/Zaczero/2Captcha.svg?branch=master)](https://travis-ci.com/Zaczero/2Captcha)
+[![Github Release](https://img.shields.io/github/release/Zaczero/2Captcha.svg)](https://github.com/Zaczero/2Captcha/releases/latest)
+[![NuGet Release](https://img.shields.io/nuget/v/2CaptchaAPI.svg)](https://www.nuget.org/packages/2CaptchaAPI/)
+[![License](https://img.shields.io/github/license/Zaczero/2Captcha.svg)](https://github.com/Zaczero/2Captcha/blob/master/LICENSE)
 
 Simple HTTP API wrapper for [2captcha.com](https://2captcha.com/)  
 An online captcha solving and image recognition service.
