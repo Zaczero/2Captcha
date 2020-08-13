@@ -16,6 +16,10 @@ An online captcha solving and image recognition service.
 
 `Install-Package 2CaptchaAPI`
 
+### Install with dotnet
+
+`dotnet add PROJECT package 2CaptchaAPI`
+
 ### Install manually
 
 [Browse latest GitHub release](https://github.com/Zaczero/2Captcha/releases/latest)
@@ -160,6 +164,7 @@ public struct _2CaptchaResult
 ### 📧 Contact
 
 * Email: [kamil@monicz.pl](mailto:kamil@monicz.pl)
+* PGP: [0x9D7BC5B97BB0A707](https://gist.github.com/Zaczero/158da01bfd5b6d236f2b8ceb62dd9698)
 
 ### 📃 License
 
