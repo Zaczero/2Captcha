@@ -30,5 +30,4 @@ namespace _2CaptchaAPI
 		}
 
 	}
-	
 }

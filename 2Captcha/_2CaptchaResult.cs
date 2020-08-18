@@ -1,4 +1,6 @@
-﻿namespace _2CaptchaAPI
+﻿// ReSharper disable MemberCanBePrivate.Global
+
+namespace _2CaptchaAPI
 {
 	public struct _2CaptchaResult
     {

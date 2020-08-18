@@ -1,7 +1,12 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+
+// ReSharper disable UnusedVariable
+// ReSharper disable RedundantArgumentDefaultValue
+// ReSharper disable CommentTypo
 
 namespace _2CaptchaAPI.Test
 {
@@ -39,6 +44,10 @@ namespace _2CaptchaAPI.Test
 			var image = await captcha.SolveImage(new FileStream("captcha.png", FileMode.Open), FileType.Png);
 			var image2 = await captcha.SolveImage(File.ReadAllBytes("captcha.png"), FileType.Png);
 			var image3 = await captcha.SolveImage("BASE64_IMAGE", FileType.Png);
+
+			var imageCaseSensitive = await captcha.SolveImage(new FileStream("captcha.png", FileMode.Open), FileType.Png, new KeyValuePair<string, string>("regsense", "1"));
+			var imageCaseSensitive2 = await captcha.SolveImage(File.ReadAllBytes("captcha.png"), FileType.Png, new KeyValuePair<string, string>("regsense", "1"));
+			var imageCaseSensitive3 = await captcha.SolveImage("BASE64_IMAGE", FileType.Png, new KeyValuePair<string, string>("regsense", "1"));
 
 			/*
 			 * Type: Text
