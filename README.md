@@ -55,6 +55,10 @@ var image = await captcha.SolveImage(new FileStream("captcha.png", FileMode.Open
 var image2 = await captcha.SolveImage(File.ReadAllBytes("captcha.png"), FileType.Png);
 var image3 = await captcha.SolveImage("BASE64_IMAGE", FileType.Png);
 
+var imageCaseSensitive = await captcha.SolveImage(new FileStream("captcha.png", FileMode.Open), FileType.Png, new KeyValuePair<string, string>("regsense", "1"));
+var imageCaseSensitive2 = await captcha.SolveImage(File.ReadAllBytes("captcha.png"), FileType.Png, new KeyValuePair<string, string>("regsense", "1"));
+var imageCaseSensitive3 = await captcha.SolveImage("BASE64_IMAGE", FileType.Png, new KeyValuePair<string, string>("regsense", "1"));
+
 /*
  * Type: Text
  *
