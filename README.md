@@ -150,16 +150,15 @@ var keyCaptcha = await captcha.SolveKeyCaptcha("USER_ID", "SESSION_ID", "WEB_SIG
 ### And here is the result structure *(the same for all methods)*
 
 ```cs
-public struct _2CaptchaResult
+public struct Result
 {
-    public bool Success;
-    public string Response;
+    public readonly bool Success;
+    public readonly JToken ResponseObject;
 
-    public _2CaptchaResult(bool success, string response)
-    {
-        Success = success;
-        Response = response;
-    }
+    public string ResponseJson;
+    public string Response;
+    public double ResponseDouble;
+    public Coordinates[] ResponseCoordinates;
 }
 ```
 
