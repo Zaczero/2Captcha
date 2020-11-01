@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using _2CaptchaAPI.Enums;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 // ReSharper disable RedundantArgumentDefaultValue
 // ReSharper disable CommentTypo
 
-namespace _2CaptchaAPI.Test
+namespace _2CaptchaAPI.Sandbox
 {
 	public static class Program
 	{
