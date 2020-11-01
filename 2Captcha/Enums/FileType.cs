@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace _2CaptchaAPI
+namespace _2CaptchaAPI.Enums
 {
 	public enum FileType
 	{
@@ -9,7 +9,7 @@ namespace _2CaptchaAPI
 		Jpeg,
 	}
 
-	internal static class FileTypEx
+	internal static class FileTypeEx
 	{
 		internal static string GetExtension(this FileType fileType)
 		{
