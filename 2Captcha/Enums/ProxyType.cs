@@ -25,7 +25,7 @@ namespace _2CaptchaAPI.Enums
 				case ProxyType.Socks5:
 					return "SOCKS5";
 				default:
-					throw new ArgumentOutOfRangeException(nameof(proxyType), proxyType, "Unsupported file type");
+					throw new ArgumentOutOfRangeException(nameof(proxyType), proxyType, "Unsupported proxy type");
 			}
 		}
 
