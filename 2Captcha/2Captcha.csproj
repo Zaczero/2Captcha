@@ -6,31 +6,33 @@
     <Authors>Zaczero (Kamil Monicz)</Authors>
     <Company>Zaczero (Kamil Monicz)</Company>
     <Description>Simple API wrapper for https://2captcha.com/</Description>
-    <Copyright>Copyright © Kamil Monicz 2020</Copyright>
+    <Copyright>Copyright © Kamil Monicz 2022</Copyright>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Zaczero/2Captcha</PackageProjectUrl>
     <PackageIconUrl></PackageIconUrl>
-    <Version>1.10</Version>
+    <Version>1.10.1</Version>
+    <PackageVersion>1.10.1</PackageVersion>
     <PackageTags>2captcha, captcha, solver, hcaptcha, recaptcha, google, text, image, wrapper, api, geetest, funcaptcha, puzzle</PackageTags>
     <PackageId>2CaptchaAPI</PackageId>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <AssemblyVersion>1.10.0.0</AssemblyVersion>
-    <FileVersion>1.10.0.0</FileVersion>
+    <AssemblyVersion>1.10.1.0</AssemblyVersion>
+    <FileVersion>1.10.1.0</FileVersion>
     <RepositoryUrl>https://github.com/Zaczero/2Captcha</RepositoryUrl>
     <PackageIcon>2captcha.png</PackageIcon>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
   </ItemGroup>
 
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
 

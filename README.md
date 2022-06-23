@@ -5,7 +5,7 @@
 [![NuGet Release](https://img.shields.io/nuget/v/2CaptchaAPI.svg)](https://www.nuget.org/packages/2CaptchaAPI/)
 [![License](https://img.shields.io/github/license/Zaczero/2Captcha.svg)](https://github.com/Zaczero/2Captcha/blob/master/LICENSE)
 
-Simple HTTP API wrapper for [2captcha.com](https://2captcha.com/)  
+Simple HTTP API wrapper for [2captcha.com](https://2captcha.com/)
 An online captcha solving and image recognition service.
 
 *By using this library you will get **10% cashback** on captchas you solve.*
@@ -15,10 +15,6 @@ An online captcha solving and image recognition service.
 ### Install with NuGet (recommended)
 
 `Install-Package 2CaptchaAPI`
-
-### Install with dotnet
-
-`dotnet add PROJECT package 2CaptchaAPI`
 
 ### Install manually
 
@@ -167,7 +163,6 @@ public struct Result
 ### 📧 Contact
 
 * Email: [kamil@monicz.pl](mailto:kamil@monicz.pl)
-* PGP: [0x9D7BC5B97BB0A707](https://gist.github.com/Zaczero/158da01bfd5b6d236f2b8ceb62dd9698)
 
 ### 📃 License
 
